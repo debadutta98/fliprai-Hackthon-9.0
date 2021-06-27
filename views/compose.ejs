@@ -1,0 +1,95 @@
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="css/compose.css" rel="stylesheet">
+
+     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
+ <script src ="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src ="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.15.1/moment.min.js"></script>
+<script src ="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src ="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.7.14/js/bootstrap-datetimepicker.min.js"></script>
+    <head>
+  <body>
+    <form action="#">
+
+  <header>
+    <h2>Mailer</h2>
+    <div>Compose your mail</div>
+  </header>
+<form action="/sendmail" method="post">
+  <div>
+    <label class="desc" id="title1" for="Field1"> To</label>
+    <div>
+      <input id="Field1" name="Field1" type="email" class="field text fn" value="" size="8" tabindex="1" required>
+    </div>
+  </div>
+    <div>
+    <label class="desc" id="title4" for="Field4">
+      Cc
+    </label>
+
+    <div>
+      <textarea id="Field4" name="Field4" spellcheck="true" rows="5" cols="10" tabindex="4" placeholder="Write recipients email separated by commas ',' ex a@gmail.com,b@gmail.com" required></textarea>
+    </div>
+  </div>
+  <div>
+    <label class="desc" id="title3" for="Field3">
+      Subject
+    </label>
+    <div>
+      <input id="Field3" name="Field3" type="email" spellcheck="false" value="" maxlength="255" tabindex="3" required>
+   </div>
+  </div>
+  <br>
+  <br>
+
+<div>
+  <label class="desc" id="title3" for="editor">
+     body
+    </label>
+<div>
+     <textarea name="editor" id="editor" rows="10" cols="80" required>
+
+            </textarea>
+</div>
+  </div>
+  <br>
+  <br>
+    <div>
+          <label class="desc" id="title3" for="datetimepicker">
+      Schedule
+    </label>
+<div>
+                    <div class="input-group date" id="datetimepicker">
+                    <input type="text" placeholder="Quiz start time" class="form-control" name="time" id="start" required>
+                    <div class="input-group-addon">
+                    <span class="glyphicon glyphicon-th"></span></div></div>
+                    <br><br><br> <br><br><br> <br><br><br> <br><br><br>
+                 </div>
+
+
+    </div>
+  <br>
+  <br>
+  <br>
+<div>
+  <div>
+  <button type="submit" class="btn btn-primary">send <i class="far fa-paper-plane fa-1x"></i></button>
+  </div>
+<div>
+</form>
+    <script src="https://cdn.ckeditor.com/4.16.1/full-all/ckeditor.js"></script>
+    <script src="js/compose.js"></script>
+    </body>
+</html>
