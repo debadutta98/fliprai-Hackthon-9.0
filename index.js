@@ -131,7 +131,7 @@ app.get('/google/callback', passport.authenticate('google', {
 
   app.get('/check-credentials',async function(req,res){
     if (typeof(req.user)!=='undefined' && req.user.provider === 'google') {
-      await User.findOne({email:req.body.uemail},async function(err,doc){
+      await User.findOne({email:req.user.email},async function(err,doc){
         if(err===null && doc===null)
         {
           let newInstance=new User({
