@@ -8,7 +8,7 @@ CKEDITOR.editorConfig = function( config ) {
 		{ name: 'tools', items: [ 'Maximize'] }
 	];
   config.editorplaceholder = 'Type here...';
-  }
+};
 
 
 

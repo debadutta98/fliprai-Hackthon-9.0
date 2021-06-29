@@ -1,6 +1,12 @@
 const express=require('express');
 const router = express.Router();
 const User=require('./connect');
+const cookieSession = require('cookie-session');
+router.use(cookieSession({
+  name: 'session',
+  keys: ['%h2&ZHV_j7rPZ@YD', 'C+Pbtn75qaSVzW#D'],
+  maxAge:3 * 60 * 60 * 1000
+}));
 require('dotenv').config();
 router.get('/',async function(req,res){
   if(typeof(req.query.email)!=='undefined' && typeof(req.query.verifyid)!='undefined')
@@ -16,11 +22,13 @@ router.get('/',async function(req,res){
     {
       "safe": true,
       "upsert": true
-    },function(err){
+    },function(error){
      if(!err)
      {
+
              //redireact user to main page
-             res.render('Main');
+             req.session.views = JSON.stringify({email:req.body.uemail,name:doc.name});
+                res.redirect('/main');
      }
      else {
 //redirect to main page

@@ -31,9 +31,23 @@ var user_table=new mongoose.Schema({
   },
   OTP:
   {
-    type:String,
-    require:true
-  }
+    type:String
+  },
+  massagelist:
+  [
+    {
+      _id:{
+         type : mongoose.Schema.Types.ObjectId,
+         auto: true
+      },
+      massage:{
+        type:Object
+      },
+      status:{
+        type:Number
+      }
+    }
+  ]
 });
 user_table.pre('save', function(next) {
     var user = this;

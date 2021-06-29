@@ -27,7 +27,7 @@
     <h2>Mailer</h2>
     <div>Compose your mail</div>
   </header>
-<form action="/sendmail" method="post">
+<form action="http://localhost:3000/compose/sendmail" method="post">
   <div>
     <label class="desc" id="title1" for="Field1"> To</label>
     <div>
@@ -48,7 +48,7 @@
       Subject
     </label>
     <div>
-      <input id="Field3" name="Field3" type="email" spellcheck="false" value="" maxlength="255" tabindex="3" required>
+      <input id="Field3" name="Field3" type="text" spellcheck="false" value="" maxlength="255" tabindex="3" required>
    </div>
   </div>
   <br>
@@ -85,7 +85,7 @@
   <br>
 <div>
   <div>
-  <button type="submit" class="btn btn-primary">send <i class="far fa-paper-plane fa-1x"></i></button>
+  <button type="submit" class="btn btn-primary" id="submitbtn">send <i class="far fa-paper-plane fa-1x"></i></button>
   </div>
 <div>
 </form>
