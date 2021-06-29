@@ -17,6 +17,10 @@ $('#frame1').on('load', function(){
     iframe.find('form').attr('action',copy('compose/sendmail'));
     iframe.find('form').attr('method','post');
     iframe.find('form').attr('target','myframe');
+    window.scrollTo({
+  top:0,
+  behavior: 'auto'
+});
 });
 }
 direact('home');
