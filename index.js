@@ -1,8 +1,7 @@
 const express=require('express');
 //assign port number
 const { v4: uuidv4 } = require('uuid');
-const passport = require("passport")
-const PORT=(process.env.port || 3000);
+const passport = require("passport");
 const cookieSession = require('cookie-session');
 const bodyParser = require("body-parser");
 const cookieParser = require('cookie-parser')
@@ -161,7 +160,6 @@ function response(response,json,massage)
 {
   console.log(response);
 }
-app.listen(PORT,function()
-{
-  console.log("connected to port");
-});
+app.listen((process.env.PORT || 3000), function(req, res) {
+  console.log("connect");
+})
