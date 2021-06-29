@@ -4,7 +4,8 @@
   "description": "\"Hackathon task\"",
   "main": "index.js",
   "scripts": {
-    "test": "t"
+    "test": "t",
+    "start": "node app.js"
   },
   "keywords": [
     "t"
