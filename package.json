@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "engines": {
     "node": "15.0.1"
-  }
+  },
   "description": "\"Hackathon task\"",
   "main": "index.js",
   "scripts": {
