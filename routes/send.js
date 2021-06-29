@@ -1,9 +1,16 @@
-require('dotenv').config();
+if (process.env.NODE_ENV !== 'production')
+ {
+   require('dotenv').config();
+   var {SENDGRID_API_KEY,GOOGLE_CLIENT_ID,GOOGLE_CLIENT_SECRET,CALLBACK_URL,url}={SENDGRID_API_KEY:process.env.SENDGRID_API_KEY,GOOGLE_CLIENT_ID:process.env.GOOGLE_CLIENT_ID,GOOGLE_CLIENT_SECRET:process.env.GOOGLE_CLIENT_SECRET,CALLBACK_URL:process.env.CALLBACK_URL,url:process.env.url}
+  }
+  else {
+    var {SENDGRID_API_KEY,GOOGLE_CLIENT_ID,GOOGLE_CLIENT_SECRET,CALLBACK_URL,url}=require('./production.js');
+  }
 const sgMail = require('@sendgrid/mail');
 
 const Send = {
   run:async function(massage,callback,json){
-    sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+    sgMail.setApiKey(SENDGRID_API_KEY);
     sgMail
       .send(massage)
       .then((body) => {

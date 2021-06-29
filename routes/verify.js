@@ -7,7 +7,14 @@ router.use(cookieSession({
   keys: ['%h2&ZHV_j7rPZ@YD', 'C+Pbtn75qaSVzW#D'],
   maxAge:3 * 60 * 60 * 1000
 }));
-require('dotenv').config();
+if (process.env.NODE_ENV !== 'production')
+ {
+   require('dotenv').config();
+   var {SENDGRID_API_KEY,GOOGLE_CLIENT_ID,GOOGLE_CLIENT_SECRET,CALLBACK_URL,url}={SENDGRID_API_KEY:process.env.SENDGRID_API_KEY,GOOGLE_CLIENT_ID:process.env.GOOGLE_CLIENT_ID,GOOGLE_CLIENT_SECRET:process.env.GOOGLE_CLIENT_SECRET,CALLBACK_URL:process.env.CALLBACK_URL,url:process.env.url}
+  }
+  else {
+    var {SENDGRID_API_KEY,GOOGLE_CLIENT_ID,GOOGLE_CLIENT_SECRET,CALLBACK_URL,url}=require('./production.js');
+  }
 router.get('/',async function(req,res){
   if(typeof(req.query.email)!=='undefined' && typeof(req.query.verifyid)!='undefined')
   {

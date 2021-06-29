@@ -1,5 +1,13 @@
 const express=require('express');
 const router = express.Router();
+if (process.env.NODE_ENV !== 'production')
+ {
+   require('dotenv').config();
+   var {SENDGRID_API_KEY,GOOGLE_CLIENT_ID,GOOGLE_CLIENT_SECRET,CALLBACK_URL,url}={SENDGRID_API_KEY:process.env.SENDGRID_API_KEY,GOOGLE_CLIENT_ID:process.env.GOOGLE_CLIENT_ID,GOOGLE_CLIENT_SECRET:process.env.GOOGLE_CLIENT_SECRET,CALLBACK_URL:process.env.CALLBACK_URL,url:process.env.url}
+  }
+  else {
+    var {SENDGRID_API_KEY,GOOGLE_CLIENT_ID,GOOGLE_CLIENT_SECRET,CALLBACK_URL,url}=require('./production.js');
+  }
 const { v4: uuidv4 } = require('uuid');
 const bodyParser = require("body-parser");
 const User = require('./connect');
