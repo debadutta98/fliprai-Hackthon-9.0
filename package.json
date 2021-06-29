@@ -2,7 +2,8 @@
   "name": "hackathon",
   "version": "1.0.0",
   "engines": {
-    "node": "15.0.1"
+    "node": "15.0.1",
+     "npm": "7.19.0"
   },
   "description": "\"Hackathon task\"",
   "main": "index.js",

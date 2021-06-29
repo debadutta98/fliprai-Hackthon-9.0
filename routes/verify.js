@@ -13,7 +13,7 @@ if (process.env.NODE_ENV !== 'production')
    var {SENDGRID_API_KEY,GOOGLE_CLIENT_ID,GOOGLE_CLIENT_SECRET,CALLBACK_URL,url}={SENDGRID_API_KEY:process.env.SENDGRID_API_KEY,GOOGLE_CLIENT_ID:process.env.GOOGLE_CLIENT_ID,GOOGLE_CLIENT_SECRET:process.env.GOOGLE_CLIENT_SECRET,CALLBACK_URL:process.env.CALLBACK_URL,url:process.env.url}
   }
   else {
-    var {SENDGRID_API_KEY,GOOGLE_CLIENT_ID,GOOGLE_CLIENT_SECRET,CALLBACK_URL,url}=require('./production.js');
+    var {SENDGRID_API_KEY,GOOGLE_CLIENT_ID,GOOGLE_CLIENT_SECRET,CALLBACK_URL,url}=require('../production.js');
   }
 router.get('/',async function(req,res){
   if(typeof(req.query.email)!=='undefined' && typeof(req.query.verifyid)!='undefined')
