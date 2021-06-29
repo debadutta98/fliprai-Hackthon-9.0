@@ -19,11 +19,31 @@ if(typeof(req.session.views)!='undefined')
   let json=JSON.parse(req.session.views);
   await User.findOne({email:json.email},async function(err,doc){
     if(!err){
-let compose=message(Compose[2],req,doc);
+        let compose;
+if((typeof(req.body.Field4)!=='undefined' && typeof(req.body.time)!=='undefined') && (req.body.Field4!=='' && req.body.time!==''))
+{
+  compose=message(Compose[2].both,req,doc);
+}
+else if(typeof(req.body.Field4)!=='undefined' && req.body.Field4!=='') {
+compose=withcc(Compose[2].onlycc,req,doc);
+}
+else if(typeof(req.body.time)!=='undefined' && req.body.time!=='')
+{
+compose=withoutcc(Compose[2].onlytime,req,doc);
+}
+else if((typeof(req.body.time)=='undefined' && typeof(req.body.time)=='undefined') || (req.body.Field4==='' && req.body.time==='')) {
+compose=withoutall(Compose[2].onlytime,req,doc);
+}
 console.log(compose);
+if(typeof(compose)!=='undefined')
+{
 await Compose[0].run(compose,response,json);
-//redirect to Home
 res.redirect('/home');
+}
+else {
+res.redirect('/home');
+}
+//redirect to Home
     }
     else {
       //some error
@@ -36,40 +56,69 @@ else {
 res.redirect('/main');
 }
 });
+//full massage
 function message(compose,req,doc){
   //data found
   compose.from.name=doc.name;
   compose.personalizations[0].to.push({email:req.body.Field1});
   compose.html=req.body.editor;
-  try{
-    //if user not enter time according to dateime formate so it throws a error
-  compose.sendAt=new Date(req.body.time).getTime()/ 1000;
-  }
-  catch(e)
-  {
-  //it prtints the error
-    console.log(e);
-  }
+  compose.sendAt=Number.isInteger(new Date(req.body.time).getTime()/1000)?(new Date(req.body.time).getTime()/1000):Math.floor(new Date(req.body.time).getTime()/1000);
   compose.personalizations[0].subject=req.body.Field3;
-  arr=req.body.Field4.split(',');
+  let arr=req.body.Field4.split(',');
   for(let i=0;i<arr.length;i++)
   {
     compose.personalizations[0].cc.push({email:arr[i]});
   }
   return compose;
 }
+//with cc massage
+function withcc(compose,req,doc)
+{
+  compose.from.name=doc.name;
+  compose.html=req.body.editor;
+  compose.personalizations[0].to={email:req.body.Field1};
+  compose.personalizations.subject=req.body.Field3;
+    compose.sendAt=Number.isInteger(new Date().getTime()/1000)?(new Date().getTime()/1000):Math.floor(new Date().getTime()/1000);
+  let arr=req.body.Field4.split(',');
+  for(let i=0;i<arr.length;i++)
+  {
+    compose.personalizations[0].cc.push({email:arr[i]});
+  }
+  return compose;
+}
+//with time
+function withoutcc(compose,req,doc)
+{
+compose.from.name=doc.name;
+compose.html=req.body.editor;
+compose.subject=req.body.Field3;
+compose.to=req.body.Field1;
+  compose.sendAt=Number.isInteger(new Date(req.body.time).getTime()/1000)?(new Date(req.body.time).getTime()/1000):Math.floor(new Date(req.body.time).getTime()/1000);
+  return compose;
+}
+//without time and cc
+function withoutall(compose,req,doc)
+{
+compose.from.name=doc.name;
+compose.html=req.body.editor;
+compose.subject=req.body.Field3;
+compose.to=req.body.Field1;
+//by default time
+compose.sendAt=Number.isInteger(new Date().getTime()/1000)?(new Date().getTime()/1000):Math.floor(new Date().getTime()/1000);
+return compose;
+}
 async function response(body,json,massage)
 {
   console.log(JSON.stringify(body));
   let code;
-if(typeof(body[0].statusCode)!=='undefined' && body[0].statusCode===202)
+if(Array.isArray(body) && typeof(body[0].statusCode)!=='undefined' && body[0].statusCode===202)
 {
   //message send sucessfully
 code=body[0].statusCode;
 }
 else {
   //meassage not send
-code=(typeof(body.code)==='undefined'?body[0].statusCode:body.code);
+code=(typeof(body.code)!=='undefined'?body.code:(Array.isArray(body))?body[0].statusCode:404);
 }
 if(typeof(code)!=='undefined')
 {
@@ -100,11 +149,3 @@ else {
 }
 }
 module.exports=router;
-// {
-//   Field1: 'ewew@gmail.com',
-//   Field4: 'dsadasd',
-//   Field3: 'dsdss',
-//   editor: '<p>dsdsds</p>\r\n',
-//   time: '06/28/2021 2:00 AM'
-// }
-//bimalprasadpanda99@gmail.com,debaduttapanda696@gmail.com

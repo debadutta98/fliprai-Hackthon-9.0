@@ -23,7 +23,7 @@ $('#frame1').on('load', function(){
 });
 });
 }
-direact('home');
+direact('compose');
 window.onload=function(){
   //get doument inside iframe
   let iframe=$("#frame1").contents();

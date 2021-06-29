@@ -24,16 +24,17 @@ usermassage=massages;
 }
 }
 if(typeof(usermassage)!=='undefined'){
-let c=0;
+let chome=0;
+let chis=0;
 usermassage.mail.forEach(function(value) {
-c++;
 if(usermassage.sign==='>')
 {
 if(moment(value.massage.sendAt*1000).isAfter(moment(new Date())))
 {
+    chome++;
   $(document).find('tbody').append(`<tr>
-          <td   align="center">${c}</td>
-          <td   align="center">${value.massage.personalizations[0].subject}</td>
+          <td   align="center">${chome}</td>
+          <td   align="center">${'personalizations' in value.massage?value.massage.personalizations[0].subject:value.massage.subject}</td>
           <td   align="center">${covertto(value.massage.sendAt*1000,"LL")}</td>
           <td   align="center">${covertto(value.massage.sendAt*1000,"LT")}</td><td   align="center">${check(value.massage._id,value.massage.status)}</td>/tr>`);
 }
@@ -41,9 +42,10 @@ if(moment(value.massage.sendAt*1000).isAfter(moment(new Date())))
 else {
 if(!moment(value.massage.sendAt*1000).isAfter(moment(new Date())))
 {
+    chis++;
   $(document).find('tbody').append(`<tr>
-          <td   align="center">${c}</td>
-          <td   align="center">${value.massage.personalizations[0].subject}</td>
+          <td   align="center">${chis}</td>
+          <td   align="center">${'personalizations' in value.massage?value.massage.personalizations[0].subject:value.massage.subject}</td>
           <td   align="center">${covertto(value.massage.sendAt*1000,"LL")}</td>
           <td   align="center">${covertto(value.massage.sendAt*1000,"LT")}</td><td   align="center">${check(value.massage._id,value.status)}</td>/tr>`);
 }

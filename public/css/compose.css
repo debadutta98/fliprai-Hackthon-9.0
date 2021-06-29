@@ -22,8 +22,10 @@ margin: 0 0 5px 0;
 }
 form > div {
 clear: both;
-overflow: hidden;
-padding: 1px;
+
+padding-top: 20px;
+padding-right: 10px;
+padding-bottom:10px;
 margin: 0 0 10px 0;
 }
 form > div > fieldset > div > div {
@@ -73,7 +75,6 @@ textarea:focus {
 outline: 0;
 border-color: #4697e4;
 }
-
 @media (max-width: 600px) {
 form > div {
  margin: 0 0 15px 0;

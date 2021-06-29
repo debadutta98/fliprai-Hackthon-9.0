@@ -21,12 +21,13 @@ const Send = {
   }
 };
 const Massage={
-  from: {email:'debadebaduttapanda.7@yandex.ru',name:'flip.ai'},
+  from: {email:'debadebaduttapanda.7@yandex.ru',name:'Mailer'},
   subject: "Hello world",
   html: "Welcome to Mailchimp Transactional!",
 to: 'serobnic@mail.ru'
 };
 const Compose={
+  both:{
   from:{email:'debadebaduttapanda.7@yandex.ru',name:'flip.ai'},
   sendAt:122132,
   html:'html',
@@ -41,8 +42,36 @@ const Compose={
       subject:'some subject'
     }
   ]
+},
+onlycc:
+{
+  from:{email:'debadebaduttapanda.7@yandex.ru',name:'flip.ai'},
+  html:'html',
+    sendAt:122132,
+  personalizations:[
+    {
+      to:[
+
+      ],
+      cc:[
+
+      ],
+      subject:'some subject'
+    }
+  ]
+},
+onlytime:
+{
+  from: {email:'debadebaduttapanda.7@yandex.ru',name:'flip.ai'},
+  subject: "Hello world",
+  html: "Welcome to Mailchimp Transactional!",
+to: 'serobnic@mail.ru',
+sendAt:18921
+}
 };
 module.exports=[Send,Massage,Compose];
+
+//JSON TYPE
 // {
 //   "personalizations": [
 //     {
