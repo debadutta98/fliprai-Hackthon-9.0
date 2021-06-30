@@ -21,8 +21,12 @@ git clone https://github.com/debadutta98/fliprai-Hackthon-9.0.git
 
 so create a file named as .env and follow the information given below
 `
-url=http://localhost:3000 SENDGRID_API_KEY=< get it from sendgrid.coom
-GOOGLE_CLIENT_ID=< get it from google developer console > GOOGLE_CLIENT_SECRET=< get it from google developer console > CALLBACK_URL=< http://localhost:3000/google/callback> NODE_ENV=localhost
+url=http://localhost:3000
+SENDGRID_API_KEY=< get it from sendgrid.com >
+GOOGLE_CLIENT_ID=< get it from google developer console > 
+GOOGLE_CLIENT_SECRET=< get it from google developer console > 
+CALLBACK_URL=< http://localhost:3000/google/callback > 
+NODE_ENV=localhost
 `
 
  - last and final step run the application
@@ -35,7 +39,7 @@ GOOGLE_CLIENT_ID=< get it from google developer console > GOOGLE_CLIENT_SECRET=<
 
 
 
->- package and Technology useed
+>- package and Technology used
 > >  - nodejs
 > >  - mongodb
 > >  - sendgridmailApi
