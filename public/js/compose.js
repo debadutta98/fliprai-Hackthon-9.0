@@ -187,7 +187,6 @@ var forms = $('.needs-validation')
    var forms = $('form');
 forms.submit(function(event){
   let body= $('#editor').val();
-  alert('hello');
    if(typeof(body)==='undefined' && body==='')
    {
      if(  $("#editor").hasClass('is-valid'))

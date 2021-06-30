@@ -1,5 +1,6 @@
 const express=require('express');
 const router=express.Router();
+const moment = require('moment');
 const bodyParser = require("body-parser");
 const User = require('./connect');
 const Compose=require('./send');
@@ -9,6 +10,7 @@ router.use(cookieSession({
   keys: ['%h2&ZHV_j7rPZ@YD', 'C+Pbtn75qaSVzW#D'],
   maxAge:3 * 60 * 60 * 1000
 }));
+moment.suppressDeprecationWarnings = true;
 router.use(bodyParser.urlencoded({extended: true}));
 router.get('/',function(req,res){
   res.render('compose');
@@ -62,7 +64,8 @@ function message(compose,req,doc){
   compose.from.name=doc.name;
   compose.personalizations[0].to.push({email:req.body.Field1});
   compose.html=req.body.editor;
-  compose.sendAt=Number.isInteger(new Date(req.body.time).getTime()/1000)?(new Date(req.body.time).getTime()/1000):Math.floor(new Date(req.body.time).getTime()/1000);
+  let n = moment(req.body.time);
+  compose.sendAt=(new Date(n.toString()).getTime()/1000);
   compose.personalizations[0].subject=req.body.Field3;
   let arr=req.body.Field4.split(',');
   for(let i=0;i<arr.length;i++)
@@ -78,7 +81,8 @@ function withcc(compose,req,doc)
   compose.html=req.body.editor;
   compose.personalizations[0].to={email:req.body.Field1};
   compose.personalizations.subject=req.body.Field3;
-    compose.sendAt=Number.isInteger(new Date().getTime()/1000)?(new Date().getTime()/1000):Math.floor(new Date().getTime()/1000);
+  let n = moment(new Date()).format(" MM/D/YYYY hh:mm A");
+    compose.sendAt=new Date(n.toString()).getTime()/1000;
   let arr=req.body.Field4.split(',');
   for(let i=0;i<arr.length;i++)
   {
@@ -93,7 +97,8 @@ compose.from.name=doc.name;
 compose.html=req.body.editor;
 compose.subject=req.body.Field3;
 compose.to=req.body.Field1;
-  compose.sendAt=Number.isInteger(new Date(req.body.time).getTime()/1000)?(new Date(req.body.time).getTime()/1000):Math.floor(new Date(req.body.time).getTime()/1000);
+let n = moment(req.body.time);
+compose.sendAt=(new Date(n.toString()).getTime()/1000);
   return compose;
 }
 //without time and cc
@@ -104,7 +109,8 @@ compose.html=req.body.editor;
 compose.subject=req.body.Field3;
 compose.to=req.body.Field1;
 //by default time
-compose.sendAt=Number.isInteger(new Date().getTime()/1000)?(new Date().getTime()/1000):Math.floor(new Date().getTime()/1000);
+let n = moment(new Date()).format(" MM/D/YYYY hh:mm A");
+  compose.sendAt=new Date(n.toString()).getTime()/1000;
 return compose;
 }
 async function response(body,json,massage)
@@ -118,7 +124,7 @@ code=body[0].statusCode;
 }
 else {
   //meassage not send
-code=(typeof(body.code)!=='undefined'?body.code:(Array.isArray(body))?body[0].statusCode:404);
+code=((Array.isArray(body)===false)?body.code:(Array.isArray(body))?body[0].statusCode:404);
 }
 if(typeof(code)!=='undefined')
 {
@@ -145,6 +151,7 @@ if(typeof(code)!=='undefined')
   });
 }
 else {
+  console.log('record not update');
 //body code undefined
 }
 }

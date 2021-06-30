@@ -11,19 +11,26 @@ setSrc	(window.location.protocol + '//' + window.location.hostname +':'+window.l
 }
 function setSrc(route)
 {
-$('#frame1').attr('src',route);
-$('#frame1').on('load', function(){
-    let iframe=$("#frame1").contents();
-    iframe.find('form').attr('action',copy('compose/sendmail'));
-    iframe.find('form').attr('method','post');
-    iframe.find('form').attr('target','myframe');
-    window.scrollTo({
-  top:0,
-  behavior: 'auto'
+  $('#frame1').attr('src','html/Loading.html');
+  window.scrollTo({
+top:0,
+behavior: 'auto'
 });
-});
+  setTimeout(function(){
+  $('#frame1').attr('src',route);
+  $('#frame1').on('load', function(){
+      let iframe=$("#frame1").contents();
+      iframe.find('form').attr('action',copy('compose/sendmail'));
+      iframe.find('form').attr('method','post');
+      iframe.find('form').attr('target','myframe');
+      window.scrollTo({
+    top:0,
+    behavior: 'auto'
+  });
+  });
+}, 5000);
 }
-direact('compose');
+direact('home');
 window.onload=function(){
   //get doument inside iframe
   let iframe=$("#frame1").contents();
