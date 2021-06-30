@@ -1,5 +1,5 @@
 # Mailer
-<img src="https://zohowebstatic.com/sites/default/files/ogimage/mail-logo.png " alt="drawing" width="100"/>
+<img src="https://zohowebstatic.com/sites/default/files/ogimage/mail-logo.png" alt="drawing" width="100"/>
 
 
 **How to Run This Application**
@@ -8,7 +8,7 @@ if you want to run it locally, this application needs some screate and sensitive
 
  - Clone this repository (open your command prompt and run this command or you can download the zip file in your system)
 ```console
-$ git clone https://github.com/debadutta98/fliprai-Hackthon-9.0.git
+git clone https://github.com/debadutta98/fliprai-Hackthon-9.0.git
 ```
  - run these command
  ```console
@@ -38,9 +38,14 @@ GOOGLE_CLIENT_ID=< get it from google developer console > GOOGLE_CLIENT_SECRET=<
 >- package and Technology useed
 > >  - nodejs
 > >  - mongodb
-> >  - sendgridApi
+> >  - sendgridmailApi
 > >  - googleoAuth
->>  - All the package are avialable in package.json file you can see there
+> >  - ejs
+> >  - jquery
+> >  - bootstrap
+> >  - moment.js
+> >  - jquery Datatable
+>>  -  All the package are avialable in package.json file you can see there
 
 
 
